@@ -1,0 +1,19 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker bulid -t 16091997/pern-client ./client
+  - docker build -t 16091997/pern-server ./server
+  - docker build -t 16091997/pern-worker ./worker
+  - docker build -t 16091997/pern-webserver ./nginx
+  # after building all the images need to push that to docker hub
+  # logging in to docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_ID --password-stdin
+  # pushing images to docker hub
+  - docker push 16091997/pern-client
+  - docker push 16091997/pern-webserver
+  - docker push 16091997/pern-server
+  - docker push 16091997/pern-worker
