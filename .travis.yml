@@ -8,7 +8,7 @@ jobs:
   include:
     - stage: build docker image
       script:
-      - docker bulid -t 16091997/pern-client ./client
+      - docker build -t 16091997/pern-client ./client
       - docker build -t 16091997/pern-server ./server
       - docker build -t 16091997/pern-worker ./worker
       - docker build -t 16091997/pern-webserver ./nginx
